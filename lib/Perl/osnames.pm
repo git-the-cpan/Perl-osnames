@@ -1,7 +1,7 @@
 package Perl::osnames;
 
 our $DATE = '2014-12-18'; # DATE
-our $VERSION = '0.07'; # VERSION
+our $VERSION = '0.08'; # VERSION
 
 use strict;
 use warnings;
@@ -92,12 +92,38 @@ Perl::osnames - List possible $^O ($OSNAME) values, with description
 
 =head1 VERSION
 
-This document describes version 0.07 of Perl::osnames (from Perl distribution Perl-osnames), released on 2014-12-18.
+This document describes version 0.08 of Perl::osnames (from Perl distribution Perl-osnames), released on 2014-12-18.
 
 =head1 DESCRIPTION
 
 This package contains C<$data> which lists possible values of C<$^O> along with
 description for each.
+
+=head2 Tags
+
+=over
+
+=item * unix
+
+Unix-like operating systems. This currently excludes beos/haiku.
+
+=item * bsd
+
+BSD-derived Unix operating systems.
+
+=item * sysv
+
+SysV-derived Unix operating systems.
+
+=item * posix
+
+For POSIX-compliant OSes, including fully-, mostly-, and largely-compliant ones
+(source: L<http://en.wikipedia.org/wiki/POSIX>).
+
+From what I can gather, dec_osf is not POSIX compliant, although there is a
+posix package for it.
+
+=back
 
 =head1 SEE ALSO
 

@@ -2,12 +2,34 @@ NAME
     Perl::osnames - List possible $^O ($OSNAME) values, with description
 
 VERSION
-    This document describes version 0.07 of Perl::osnames (from Perl
+    This document describes version 0.08 of Perl::osnames (from Perl
     distribution Perl-osnames), released on 2014-12-18.
 
 DESCRIPTION
     This package contains $data which lists possible values of $^O along
     with description for each.
+
+  Tags
+    *   unix
+
+        Unix-like operating systems. This currently excludes beos/haiku.
+
+    *   bsd
+
+        BSD-derived Unix operating systems.
+
+    *   sysv
+
+        SysV-derived Unix operating systems.
+
+    *   posix
+
+        For POSIX-compliant OSes, including fully-, mostly-, and
+        largely-compliant ones (source:
+        <http://en.wikipedia.org/wiki/POSIX>).
+
+        From what I can gather, dec_osf is not POSIX compliant, although
+        there is a posix package for it.
 
 SEE ALSO
     perlvar
