@@ -1,0 +1,46 @@
+NAME
+    Perl::osnames - List possible $^O ($OSNAME) values, with description
+
+VERSION
+    This document describes version 0.07 of Perl::osnames (from Perl
+    distribution Perl-osnames), released on 2014-12-18.
+
+DESCRIPTION
+    This package contains $data which lists possible values of $^O along
+    with description for each.
+
+SEE ALSO
+    perlvar
+
+    Config
+
+    Devel::Platform::Info
+
+    The output of "perl -V"
+
+    App::osnames
+
+HOMEPAGE
+    Please visit the project's homepage at
+    <https://metacpan.org/release/Perl-osnames>.
+
+SOURCE
+    Source repository is at
+    <https://github.com/perlancar/perl-Perl-osnames>.
+
+BUGS
+    Please report any bugs or feature requests on the bugtracker website
+    <https://rt.cpan.org/Public/Dist/Display.html?Name=Perl-osnames>
+
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
+
+AUTHOR
+    perlancar <perlancar@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by perlancar@cpan.org.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
