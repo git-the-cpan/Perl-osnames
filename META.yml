@@ -6,7 +6,7 @@ build_requires:
   File::Spec: '0'
   IO::Handle: '0'
   IPC::Open3: '0'
-  Test::More: '0'
+  Test::More: '0.98'
 configure_requires:
   ExtUtils::MakeMaker: '0'
 dynamic_config: 0
@@ -16,11 +16,13 @@ meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: '1.4'
 name: Perl-osnames
+requires:
+  perl: '5.008'
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Perl-osnames
   homepage: https://metacpan.org/release/Perl-osnames
   repository: git://github.com/perlancar/perl-Perl-osnames.git
-version: '0.08'
+version: '0.09'
 x_Dist_Zilla:
   perl:
     version: '5.018002'
@@ -272,6 +274,14 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Test::Rinci
       name: '@Author::PERLANCAR/Test::Rinci'
       version: '0.01'
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: test
+          type: requires
+      name: TestRequires
+      version: '5.025'
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:

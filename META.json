@@ -27,12 +27,17 @@
             "Test::Rinci" : "0.01"
          }
       },
+      "runtime" : {
+         "requires" : {
+            "perl" : "5.008"
+         }
+      },
       "test" : {
          "requires" : {
             "File::Spec" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
-            "Test::More" : "0"
+            "Test::More" : "0.98"
          }
       }
    },
@@ -48,7 +53,7 @@
          "web" : "https://github.com/perlancar/perl-Perl-osnames"
       }
    },
-   "version" : "0.08",
+   "version" : "0.09",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.018002"
@@ -366,6 +371,17 @@
             "class" : "Dist::Zilla::Plugin::Test::Rinci",
             "name" : "@Author::PERLANCAR/Test::Rinci",
             "version" : "0.01"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "requires"
+               }
+            },
+            "name" : "TestRequires",
+            "version" : "5.025"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",

@@ -2,12 +2,12 @@ NAME
     Perl::osnames - List possible $^O ($OSNAME) values, with description
 
 VERSION
-    This document describes version 0.08 of Perl::osnames (from Perl
+    This document describes version 0.09 of Perl::osnames (from Perl
     distribution Perl-osnames), released on 2014-12-18.
 
 DESCRIPTION
     This package contains $data which lists possible values of $^O along
-    with description for each.
+    with description for each. It also provides some helper functions.
 
   Tags
     *   unix
@@ -30,6 +30,27 @@ DESCRIPTION
 
         From what I can gather, dec_osf is not POSIX compliant, although
         there is a posix package for it.
+
+VARIABLES
+    None are exported by default, but they are exportable.
+
+  $data
+    An arrayref of records (arrayrefs), each structured as:
+
+     [$name, \@tags, $description]
+
+FUNCTIONS
+    None are exported by default, but they are exportable.
+
+  is_posix([ $os ]) => bool
+    Check whether $os (defaults to $^O if not specified) is POSIX (checked
+    by the existence of "posix" tag on the OS's record in $data). Will
+    return 0, 1, or undef if $os is unknown.
+
+  is_unix([ $os ]) => bool
+    Check whether $os (defaults to $^O if not specified) is Unix (checked by
+    the existence of "unix" tag on the OS's record in $data). Will return 0,
+    1, or undef if $os is unknown.
 
 SEE ALSO
     perlvar
