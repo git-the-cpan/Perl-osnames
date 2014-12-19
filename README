@@ -2,7 +2,7 @@ NAME
     Perl::osnames - List possible $^O ($OSNAME) values, with description
 
 VERSION
-    This document describes version 0.10 of Perl::osnames (from Perl
+    This document describes version 0.11 of Perl::osnames (from Perl
     distribution Perl-osnames), released on 2014-12-19.
 
 DESCRIPTION

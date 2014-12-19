@@ -1,7 +1,7 @@
 package Perl::osnames;
 
 our $DATE = '2014-12-19'; # DATE
-our $VERSION = '0.10'; # VERSION
+our $VERSION = '0.11'; # VERSION
 
 use strict;
 use warnings;
@@ -70,7 +70,7 @@ _
 #dd $data;
 
 sub is_posix {
-    my $os = shift // $^O;
+    my $os = shift || $^O;
     for my $rec (@$data) {
         next unless $rec->[0] eq $os;
         for (@{$rec->[1]}) {
@@ -82,7 +82,7 @@ sub is_posix {
 }
 
 sub is_unix {
-    my $os = shift // $^O;
+    my $os = shift || $^O;
     for my $rec (@$data) {
         next unless $rec->[0] eq $os;
         for (@{$rec->[1]}) {
@@ -108,7 +108,7 @@ Perl::osnames - List possible $^O ($OSNAME) values, with description
 
 =head1 VERSION
 
-This document describes version 0.10 of Perl::osnames (from Perl distribution Perl-osnames), released on 2014-12-19.
+This document describes version 0.11 of Perl::osnames (from Perl distribution Perl-osnames), released on 2014-12-19.
 
 =head1 DESCRIPTION
 

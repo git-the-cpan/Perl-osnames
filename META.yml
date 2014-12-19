@@ -22,7 +22,7 @@ resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=Perl-osnames
   homepage: https://metacpan.org/release/Perl-osnames
   repository: git://github.com/perlancar/perl-Perl-osnames.git
-version: '0.10'
+version: '0.11'
 x_Dist_Zilla:
   perl:
     version: '5.018001'
