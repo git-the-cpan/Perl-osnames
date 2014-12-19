@@ -1,7 +1,7 @@
 package Perl::osnames;
 
-our $DATE = '2014-12-18'; # DATE
-our $VERSION = '0.09'; # VERSION
+our $DATE = '2014-12-19'; # DATE
+our $VERSION = '0.10'; # VERSION
 
 use strict;
 use warnings;
@@ -9,65 +9,54 @@ use warnings;
 use Exporter qw(import);
 our @EXPORT_OK = qw($data is_unix is_posix);
 
-our $data = [
-
-    ['aix', [qw/unix sysv posix/], 'IBM AIX'],
-    ['beos', [qw/posix/], 'See also: haiku'],
-    ['cygwin', [qw/unix posix/], ''],
-
-    ['darwin', [qw/unix bsd posix/],
-
-     'Mac OS X. Does not currently (2013) include iOS because Perl has not been
-     ported to that platform yet (but PerlMotion is being developed)',
-
- ],
-
-    ['dec_osf', [qw//], 'DEC Alpha'],
-    ['dragonfly', [qw/unix bsd posix/], 'DragonFly BSD'],
-    ['freebsd', [qw/unix bsd posix/], ''],
-    ['gnukfreebsd', [qw/unix bsd posix/], 'Debian GNU/kFreeBSD'],
-    ['haiku', [qw/posix/], 'See also: beos'],
-    ['hpux', [qw/unix sysv posix/], 'HP-UX'],
-    ['interix', [qw/unix posix/], ''],
-    ['irix', [qw/unix sysv posix/], ''],
-    ['linux', [qw/unix posix/], ''], # unix-like
-    ['MacOS', [qw//], 'Mac OS Classic (which predates Mac OS X)'],
-    ['midnightbsd', [qw/unix bsd posix/], ''],
-    ['minix', [qw/unix posix/], ''], # unix-like
-    ['mirbsd', [qw/unix bsd posix/], 'MirOS BSD'],
-
-    ['MSWin32', [qw//],
-
-     'All Windows platforms including 95/98/ME/NT/2000/XP/CE/.NET. But does not
-     include Cygwin (see "cygwin") or Interix (see "interix"). To get more
-     details on which Windows you are on, use Win32::GetOSName() or
-     Win32::GetOSVersion(). Ref: perlvar.',
-
- ],
-
-    ['netbsd', [qw/unix bsd posix/], ''],
-    ['openbsd', [qw/unix bsd posix/], ''],
-    ['sco', [qw/unix sysv posix/], 'SCO UNIX'],
-    ['solaris', [qw/unix sysv posix/], 'This includes the old SunOS.'],
-
-    # These OS-es are listed on CPAN Testers OS Leaderboards, but I couldn't
-    # google any reports on them. So I couldn't peek the $Config{osname} value.
-
-    # - bigtrig
-    # - gnu hurd
-    # - os/2
-    # - os390/zos
-    # - qnx neutrino
-    # - tru64 (Tru64 UNIX, unix bsd)
-    # - vms
-
-];
-
-for (@$data) {
-    # unindent & unwrap text first, Text::Wrap doesn't do those
-    $_->[2] =~ s/^[ \t]+//mg;
-    $_->[2] =~ s/\n(\n?)(\S)/$1 ? "\n\n$2" : " $2"/mge;
-}
+our $data = [map {
+    chomp;
+    my @f = split /\s+/, $_, 3;
+    $f[1] = $f[1] eq '-' ? [] : [split /,/, $f[1]];
+    \@f;
+} split /^/m, <<'_'];
+aix          posix,sysv,unix   IBM AIX.
+amigaos      -
+android      sysv,unix
+bsdos        bsd,unix          BSD/OS. Originally called BSD/386, also known as BSDi.
+beos         posix             See also: haiku.
+bitrig       bsd,unix          An OpenBSD fork.
+dgux         sysv,unix         DG/UX.
+dos          -
+dynixptx     sysv,unix         DYNIX/ptx.
+cygwin       posix,unix        Unix-like emulation layer that runs on Windows.
+darwin       bsd,posix,unix    Mac OS X. Does not currently (2013) include iOS. See also: iphoneos.
+dec_osf      -                 DEC Alpha.
+dragonfly    bsd,posix,unix    DragonFly BSD.
+freebsd      bsd,posix,unix
+gnukfreebsd  bsd,posix,unix    Debian GNU/kFreeBSD.
+haiku        posix             See also: beos.
+hpux         posix,sysv,unix   HP-UX.
+interix      posix,unix        Optional, POSIX-compliant Unix subsystem for Windows NT. Also known as Microsoft SFU. No longer included in Windows nor supported.
+irix         posix,sysv,unix
+linux        posix,sysv,unix
+MacOS        -                 Mac OS Classic (predates Mac OS X). See also: darwin, iphoneos.
+machten      bsd,unix          MachTen, an operating system that runs virtually under Mac OS.
+midnightbsd  bsd,posix,unix
+minix        bsd,posix
+mirbsd       bsd,posix,unix    MirOS BSD.
+mpeix        -                 MPEiX.
+MSWin32      -                 All Windows platforms including 95/98/ME/NT/2000/XP/CE/.NET. But does not include Cygwin (see "cygwin") or Interix (see "interix"). To get more details on which Windows you are on, use Win32::GetOSName() or Win32::GetOSVersion(). Ref: perlvar.
+netbsd       bsd,posix,unix
+next         unix              NeXTSTEP OS.
+nto          unix              ?
+openbsd      bsd,posix,unix
+os390        ebcdic
+os400        ebcdic
+posix-bc     ebcdic
+qnx          unix
+riscos       -
+sco          posix,sysv,unix   SCO UNIX.
+solaris      posix,sysv,unix   This includes the old SunOS.
+vmesa        ebcdic
+vms          -
+vos          -
+_
 
 # dump: display data as table
 #use Data::Format::Pretty::Text qw(format_pretty);
@@ -119,7 +108,7 @@ Perl::osnames - List possible $^O ($OSNAME) values, with description
 
 =head1 VERSION
 
-This document describes version 0.09 of Perl::osnames (from Perl distribution Perl-osnames), released on 2014-12-18.
+This document describes version 0.10 of Perl::osnames (from Perl distribution Perl-osnames), released on 2014-12-19.
 
 =head1 DESCRIPTION
 
@@ -184,11 +173,18 @@ L<perlvar>
 
 L<Config>
 
+L<Perl::OSType>, a core module. You should probably use this module instead.
+Currently the difference between this module and Perl::osnames: 1) Perl::osnames
+currently doesn't list beos/haiku as Unix, but POSIX; 2) Perl::osnames provides
+more tags (like sysv, bsd, posix) and description.
+
 L<Devel::Platform::Info>
 
 The output of C<perl -V>
 
-L<App::osnames>
+L<App::osnames>, the original reason for Perl::osnames. With this CLI tool you
+can grep OS names by name, tag, or description, e.g. C<osnames solaris> or
+C<osnames posix>.
 
 =head1 HOMEPAGE
 
